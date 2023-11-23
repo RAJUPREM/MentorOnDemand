@@ -25,10 +25,9 @@ public class PersonController {
     @Autowired
     PersonRepo personRepo;
 
-    @GetMapping("/hello")
-    public String demo(){
-    	System.out.println("Raju prem");
-       return "hello world";
+    @GetMapping("/welcome")
+    public String welcome(){
+       return "Welcome Raju prem";
     }
 
 
