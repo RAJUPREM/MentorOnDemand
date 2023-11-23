@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import com.mentorOnDemand.entity.CustomPerson;
-import com.mentorOnDemand.exception.UserNotFoundException;
+import com.mentorOnDemand.exception.PersonNotFoundException;
 import com.mentorOnDemand.repo.PersonRepo;
 
 
@@ -21,6 +21,6 @@ public class CustomPersonDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String personName) throws UsernameNotFoundException {
         return new CustomPerson(personRepo.findByPersonName(personName)
-                .orElseThrow(() -> new UserNotFoundException("Person is not found with this personName "+personName)));
+                .orElseThrow(() -> new PersonNotFoundException("Person is not found with this personName "+personName)));
     }
 }

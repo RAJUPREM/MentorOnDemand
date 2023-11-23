@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mentorOnDemand.entity.JWTRequest;
 import com.mentorOnDemand.entity.JWTResponse;
 import com.mentorOnDemand.entity.Person;
-import com.mentorOnDemand.exception.UserNotFoundException;
+import com.mentorOnDemand.exception.PersonNotFoundException;
 import com.mentorOnDemand.helper.JWTService;
 import com.mentorOnDemand.repo.PersonRepo;
 import com.mentorOnDemand.servImpl.CustomPersonDetailsService;
@@ -52,11 +52,11 @@ public class JWTController {
             if (authentication.isAuthenticated()) {
                 return ResponseEntity.ok(new JWTResponse(jwtHelper.generateToken(jwtRequest.getPersonName())));
             } else {
-                throw new UsernameNotFoundException("Person is not found sorry !!");
+                throw new PersonNotFoundException("Person is not found sorry !!");
             }
         }
         catch (Exception ex){
-            throw new UserNotFoundException("user name not found");
+            throw new PersonNotFoundException("user name not found");
         }
     }
 }

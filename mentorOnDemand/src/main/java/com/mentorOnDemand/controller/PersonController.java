@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mentorOnDemand.entity.Person;
-
-import com.mentorOnDemand.exception.UserNotFoundException;
+import com.mentorOnDemand.exception.PersonNotFoundException;
 import com.mentorOnDemand.repo.PersonRepo;
 
 
@@ -37,7 +36,7 @@ public class PersonController {
     public ResponseEntity<List<Person>> getAllUsers(){
         List<Person> persons = personRepo.findAll();
         if(persons.size() == 0){
-            throw new UserNotFoundException("Person is not found");
+            throw new PersonNotFoundException("Person is not found");
         }
         return new ResponseEntity<>(persons, HttpStatus.OK);
     }
@@ -45,7 +44,7 @@ public class PersonController {
     @GetMapping("/{id}")
     public ResponseEntity<Person> getPersonById(@PathVariable int id){
     	Person user = personRepo.findById(id).orElseThrow(()
-                -> new UserNotFoundException("Person is not found with this id"+id));
+                -> new PersonNotFoundException("Person is not found with this id"+id));
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
@@ -58,7 +57,7 @@ public class PersonController {
     @PutMapping("/update/{id}")
     public ResponseEntity<Person> updateSave(@RequestBody Person person, @PathVariable int id){
     	Person newUser = personRepo.findById(id).orElseThrow(()
-                -> new UserNotFoundException("Person is not found with this id"+id));
+                -> new PersonNotFoundException("Person is not found with this id"+id));
         newUser.setPersonName(person.getPersonName());
         newUser.setPassword(person.getPassword());
         return new ResponseEntity<>(personRepo.save(newUser), HttpStatus.OK);
@@ -67,7 +66,7 @@ public class PersonController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Person> deleteSave(@PathVariable int id){
     	Person newPerson = personRepo.findById(id).orElseThrow(()
-                -> new UserNotFoundException("Person is not found with this id"+id));
+                -> new PersonNotFoundException("Person is not found with this id"+id));
         personRepo.delete(newPerson);
         return new ResponseEntity<>(newPerson, HttpStatus.OK);
     }
