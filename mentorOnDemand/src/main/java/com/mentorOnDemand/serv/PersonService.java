@@ -2,8 +2,6 @@ package com.mentorOnDemand.serv;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.PathVariable;
-
 import com.mentorOnDemand.entity.Person;
 
 public interface PersonService {
@@ -16,6 +14,6 @@ public interface PersonService {
 	
 	public Person updatePersonByPersonId( Person person, int personId);
 	
-	public Person deletePersonByPersonId(@PathVariable int personId);
+	public Person deletePersonByPersonId(int personId);
 
 }
