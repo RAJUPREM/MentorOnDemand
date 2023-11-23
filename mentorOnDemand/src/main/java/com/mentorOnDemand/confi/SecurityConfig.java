@@ -29,12 +29,30 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
+//    	return httpSecurity.csrf().disable()
+//                .authorizeHttpRequests()
+//                .requestMatchers("/token").permitAll()
+//                .and()
+//                .authorizeHttpRequests().requestMatchers("/persons/**")
+//                .hasAuthority("ADMIN").anyRequest().authenticated()
+//                .and()
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .authenticationProvider(authenticationProvider())
+//                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+//                .build();
+
+    	
     	return httpSecurity.csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/token").permitAll()
                 .and()
-                .authorizeHttpRequests().requestMatchers("/persons/**")
-                .hasAuthority("ADMIN").anyRequest().authenticated()
+                .authorizeHttpRequests()
+                .requestMatchers("/mentors/**").hasAnyAuthority("MENTOR","ADMIN")
+                .requestMatchers("/persons/**","/mentors/**","/users/**","/technicalCourses/**")
+                .hasAuthority("ADMIN")
+                .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -42,7 +60,6 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-
 
     }
 
