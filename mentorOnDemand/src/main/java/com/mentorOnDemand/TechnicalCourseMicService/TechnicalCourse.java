@@ -14,6 +14,17 @@ import jakarta.persistence.ManyToMany;
 @Entity
 public class TechnicalCourse {
 	
+	public TechnicalCourse() {
+		super();
+	}
+
+	public TechnicalCourse(int technicalCourseId, String technicalCourseName, List<Mentor> mentors) {
+		super();
+		this.technicalCourseId = technicalCourseId;
+		this.technicalCourseName = technicalCourseName;
+		this.mentors = mentors;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int technicalCourseId;
@@ -21,6 +32,36 @@ public class TechnicalCourse {
 	
 	@ManyToMany(cascade=CascadeType.ALL)
 	private List<Mentor> mentors;
+
+	public int getTechnicalCourseId() {
+		return technicalCourseId;
+	}
+
+	public void setTechnicalCourseId(int technicalCourseId) {
+		this.technicalCourseId = technicalCourseId;
+	}
+
+	public String getTechnicalCourseName() {
+		return technicalCourseName;
+	}
+
+	public void setTechnicalCourseName(String technicalCourseName) {
+		this.technicalCourseName = technicalCourseName;
+	}
+
+	public List<Mentor> getMentors() {
+		return mentors;
+	}
+
+	public void setMentors(List<Mentor> mentors) {
+		this.mentors = mentors;
+	}
+
+	@Override
+	public String toString() {
+		return "TechnicalCourse [technicalCourseId=" + technicalCourseId + ", technicalCourseName="
+				+ technicalCourseName + ", mentors=" + mentors + "]";
+	}
 	
 
 }

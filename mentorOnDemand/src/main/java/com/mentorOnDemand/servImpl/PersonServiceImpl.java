@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mentorOnDemand.entity.Person;
@@ -38,8 +39,9 @@ public class PersonServiceImpl implements PersonService{
 
 	@Override
 	public Person savePerson(Person person) {
+		person.setPassword(new BCryptPasswordEncoder().encode(person.getPassword()));
 		Person newPerson  = personRepo.save(person);
-		return null;
+		return newPerson;
 	}
 
 	@Override
