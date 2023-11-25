@@ -7,15 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mentorOnDemand.entity.Person;
-import com.mentorOnDemand.exception.PersonNotFoundException;
-import com.mentorOnDemand.repo.PersonRepo;
+import com.mentorOnDemand.repo.PersonRepository;
 import com.mentorOnDemand.servImpl.PersonServiceImpl;
 
 
@@ -24,7 +22,7 @@ import com.mentorOnDemand.servImpl.PersonServiceImpl;
 public class PersonController {
 
     @Autowired
-    PersonRepo personRepo;
+    PersonRepository personRepository;
     
     @Autowired
     PersonServiceImpl personServiceImpl;
@@ -46,14 +44,16 @@ public class PersonController {
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
-    @PostMapping("/save")
-    public ResponseEntity<Person> savePerson(@RequestBody Person person){
-    	Person newPerson=personServiceImpl.savePerson(person);
-        return new ResponseEntity<>(newPerson, HttpStatus.OK);
-    }
-
+//    @PostMapping("/save")
+//    public ResponseEntity<Person> savePerson(@RequestBody Person person){
+//    	Person newPerson=personServiceImpl.savePerson(person);
+//        return new ResponseEntity<>(newPerson, HttpStatus.OK);
+//    }
+//
     @PutMapping("/update/{personId}")
     public ResponseEntity<Person> updatePersonByPersonId(@RequestBody Person person, @PathVariable int personId){
+    	System.out.println(person);
+    	System.out.println(personId);
     	Person per=personServiceImpl.updatePersonByPersonId(person, personId);
         return new ResponseEntity<>(per, HttpStatus.OK);
     }

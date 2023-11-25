@@ -10,7 +10,7 @@ public interface PersonService {
 	
 	public Person getPersonById(int personId);
 	
-	public Person savePerson(Person person);
+	public void savePerson();
 	
 	public Person updatePersonByPersonId( Person person, int personId);
 	

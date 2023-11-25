@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController {
 	
 	@Autowired
-	AdminServiceImpl AdminServiceImpl;
+	AdminServiceImpl adminServiceImpl;
 	
 	@GetMapping("/welcome")
 	public String welcome()
@@ -33,31 +33,31 @@ public class AdminController {
 
 	@GetMapping("/")
     public ResponseEntity<List<Admin>> getAllAdmins(){
-        List<Admin> admins = AdminServiceImpl.getAllAdmin();
+        List<Admin> admins = adminServiceImpl.getAllAdmin();
         return new ResponseEntity<>(admins, HttpStatus.OK);
     }
 
     @GetMapping("/{adminId}")
     public ResponseEntity<Admin> getAdminById(@PathVariable int adminId){
-    	Admin admin=AdminServiceImpl.getAdminById(adminId);
+    	Admin admin=adminServiceImpl.getAdminById(adminId);
         return new ResponseEntity<>(admin, HttpStatus.OK);
     }
 
     @PostMapping("/save")
     public ResponseEntity<Admin> saveAdmin(@RequestBody Admin admin){
-    	Admin newAdmin=AdminServiceImpl.saveAdmin(admin);
+    	Admin newAdmin=adminServiceImpl.saveAdmin(admin);
         return new ResponseEntity<>(newAdmin, HttpStatus.OK);
     }
 
     @PutMapping("/update/{adminId}")
     public ResponseEntity<Admin> updateAdminByAdminId(@RequestBody Admin admin, @PathVariable int adminId){
-    	Admin adminRes=AdminServiceImpl.updateAdminByAdminId(admin, adminId);
+    	Admin adminRes=adminServiceImpl.updateAdminByAdminId(admin, adminId);
         return new ResponseEntity<>(adminRes, HttpStatus.OK);
     }
 
     @DeleteMapping("delete/{adminId}")
     public ResponseEntity<Admin> deleteAdminByAdminId(@PathVariable int adminId){
-    	Admin newAdmin=AdminServiceImpl.deleteAdminByAdminId(adminId);
+    	Admin newAdmin=adminServiceImpl.deleteAdminByAdminId(adminId);
         return new ResponseEntity<>(newAdmin, HttpStatus.OK);
     }
 

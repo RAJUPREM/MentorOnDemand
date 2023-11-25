@@ -4,20 +4,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mentorOnDemand.entity.JWTRequest;
 import com.mentorOnDemand.entity.JWTResponse;
-import com.mentorOnDemand.entity.Person;
 import com.mentorOnDemand.exception.PersonNotFoundException;
 import com.mentorOnDemand.helper.JWTService;
-import com.mentorOnDemand.repo.PersonRepo;
+import com.mentorOnDemand.repo.PersonRepository;
 import com.mentorOnDemand.servImpl.CustomPersonDetailsService;
+import com.mentorOnDemand.servImpl.PersonServiceImpl;
 
 
 @RestController
@@ -27,7 +24,10 @@ public class JWTController {
     JWTService jwtHelper;
     
     @Autowired
-    PersonRepo personRepo;
+    PersonServiceImpl personServiceImpl;
+    
+    @Autowired
+    PersonRepository personRepository;
 
     @Autowired
     CustomPersonDetailsService customPersonDetailsService;
@@ -39,12 +39,14 @@ public class JWTController {
     public ResponseEntity<JWTResponse> getToken(@RequestBody JWTRequest jwtRequest){
         System.out.println(jwtRequest);
         
-//        this.personRepo.save(new Person(1, "raju",
+//        this.personRepository.save(new Person(1, "raju",
 // 			   new BCryptPasswordEncoder().encode("Raju@123"), "USER"));
-// 		this.personRepo.save(new Person(3, "prem",
+// 		this.personRepository.save(new Person(3, "prem",
 // 				new BCryptPasswordEncoder().encode("Prem@123"), "ADMIN"));
-// 		this.personRepo.save(new Person(2, "ravi",
+// 		this.personRepository.save(new Person(2, "ravi",
 //			new BCryptPasswordEncoder().encode("Ravi@123"), "MENTOR"));
+        
+        personServiceImpl.savePerson();
  		
         try {
             Authentication authentication =      authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getPersonName()

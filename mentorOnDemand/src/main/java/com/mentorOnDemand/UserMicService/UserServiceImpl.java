@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,6 +28,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User saveUser(User user) {
+		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 		User use=userRepository.save(user);
 		return use;
 	}
@@ -36,6 +38,7 @@ public class UserServiceImpl implements UserService{
 		Optional<User> tempUser=userRepository.findById(userId);
 		User use=tempUser.get();
 		use.setUserName(user.getUserName());
+		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 		use.setPassword(user.getPassword());
 		userRepository.save(use);
 		return use;

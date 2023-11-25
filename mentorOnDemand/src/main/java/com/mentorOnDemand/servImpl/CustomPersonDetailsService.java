@@ -9,18 +9,18 @@ import org.springframework.stereotype.Component;
 
 import com.mentorOnDemand.entity.CustomPerson;
 import com.mentorOnDemand.exception.PersonNotFoundException;
-import com.mentorOnDemand.repo.PersonRepo;
+import com.mentorOnDemand.repo.PersonRepository;
 
 
 @Component
 public class CustomPersonDetailsService implements UserDetailsService {
 
     @Autowired
-    PersonRepo personRepo;
+    PersonRepository personRepository;
 
     @Override
     public UserDetails loadUserByUsername(String personName) throws UsernameNotFoundException {
-        return new CustomPerson(personRepo.findByPersonName(personName)
+        return new CustomPerson(personRepository.findByPersonName(personName)
                 .orElseThrow(() -> new PersonNotFoundException("Person is not found with this personName "+personName)));
     }
 }

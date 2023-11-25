@@ -9,6 +9,6 @@ import com.mentorOnDemand.entity.Person;
 import java.util.Optional;
 
 @Repository
-public interface PersonRepo extends JpaRepository<Person, Integer> {
+public interface PersonRepository extends JpaRepository<Person, Integer> {
     public Optional<Person> findByPersonName(String personName);
 }
