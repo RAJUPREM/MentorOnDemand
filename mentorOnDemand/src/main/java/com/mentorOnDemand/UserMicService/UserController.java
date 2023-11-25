@@ -49,14 +49,14 @@ public class UserController {
 
     @PutMapping("/update/{userId}")
     public ResponseEntity<User> updateUserByUserId(@RequestBody User user, @PathVariable int userId){
-    	User use=userServiceImpl.updateUserByUserId(user, userId);
-        return new ResponseEntity<>(use, HttpStatus.OK);
+    	User userRes=userServiceImpl.updateUserByUserId(user, userId);
+        return new ResponseEntity<>(userRes, HttpStatus.OK);
     }
 
     @DeleteMapping("delete/{userId}")
     public ResponseEntity<User> deleteUserByuserId(@PathVariable int userId){
-    	User newUser=userServiceImpl.deleteUserByUserId(userId);
-        return new ResponseEntity<>(newUser, HttpStatus.OK);
+    	User userRes=userServiceImpl.deleteUserByUserId(userId);
+        return new ResponseEntity<>(userRes, HttpStatus.OK);
     }
 
 }

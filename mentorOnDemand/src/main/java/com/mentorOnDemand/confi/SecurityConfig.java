@@ -50,7 +50,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers("/mentors/**").hasAnyAuthority("MENTOR","ADMIN")
-                .requestMatchers("/persons/**","/mentors/**","/users/**","/technicalCourses/**")
+                .requestMatchers("/persons/**","/mentors/**","/users/**","/technicalCourses/**","/admins/**")
                 .hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()

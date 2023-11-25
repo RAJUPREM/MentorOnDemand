@@ -14,22 +14,25 @@ import jakarta.persistence.ManyToMany;
 @Entity
 public class Mentor {
 	
-	public Mentor() {
-		super();
-	}
-
-	public Mentor(int mentorId, String mentorName, int mentorExperience, List<TechnicalCourse> technicalCourses) {
+	public Mentor(int mentorId, String mentorName, String mentorPassword, int mentorExperience,
+			List<TechnicalCourse> technicalCourses) {
 		super();
 		this.mentorId = mentorId;
 		this.mentorName = mentorName;
+		this.mentorPassword = mentorPassword;
 		this.mentorExperience = mentorExperience;
 		this.technicalCourses = technicalCourses;
+	}
+
+	public Mentor() {
+		super();
 	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int mentorId;
 	private String mentorName;
+	private String mentorPassword;
 	private int mentorExperience;
 	
 	@ManyToMany(cascade=CascadeType.ALL)
@@ -51,6 +54,14 @@ public class Mentor {
 		this.mentorName = mentorName;
 	}
 
+	public String getMentorPassword() {
+		return mentorPassword;
+	}
+
+	public void setMentorPassword(String mentorPassword) {
+		this.mentorPassword = mentorPassword;
+	}
+
 	public int getMentorExperience() {
 		return mentorExperience;
 	}
@@ -69,8 +80,10 @@ public class Mentor {
 
 	@Override
 	public String toString() {
-		return "Mentor [mentorId=" + mentorId + ", mentorName=" + mentorName + ", mentorExperience=" + mentorExperience
-				+ ", technicalCourses=" + technicalCourses + "]";
+		return "Mentor [mentorId=" + mentorId + ", mentorName=" + mentorName + ", mentorPassword=" + mentorPassword
+				+ ", mentorExperience=" + mentorExperience + ", technicalCourses=" + technicalCourses + "]";
 	}
+
+	
 
 }
