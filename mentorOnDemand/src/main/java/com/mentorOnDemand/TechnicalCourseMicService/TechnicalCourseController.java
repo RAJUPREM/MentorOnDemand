@@ -43,8 +43,8 @@ public class TechnicalCourseController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<TechnicalCourse> saveTechnicalCourse(@RequestBody TechnicalCourse technicalCourse){
-    	TechnicalCourse newTechnicalCourse=technicalCourseServiceImpl.saveTechnicalCourse(technicalCourse);
+    public ResponseEntity<TechnicalCourse> saveTechnicalCourse(@RequestBody TechnicalCourseDto technicalCourseDto){
+    	TechnicalCourse newTechnicalCourse=technicalCourseServiceImpl.saveTechnicalCourse(technicalCourseDto);
         return new ResponseEntity<>(newTechnicalCourse, HttpStatus.OK);
     }
 
@@ -60,10 +60,10 @@ public class TechnicalCourseController {
         return new ResponseEntity<>(newTechnicalCourse, HttpStatus.OK);
     }
     
-    @PostMapping("/addMentor")
-    public ResponseEntity<TechnicalCourse> addMentorByMentorIdAndTechnicalCourseId(@RequestBody TechnicalCourseMentorDto  technicalCourseMentorDto) {
-    	TechnicalCourse technicalCourse=technicalCourseServiceImpl.addMentorByMentorIdAndTechnicalCourseId(technicalCourseMentorDto.getMentorId(), technicalCourseMentorDto.getTechnicalCourseId());
-    	return new ResponseEntity<>(technicalCourse,HttpStatus.OK);
-    }
+//    @PostMapping("/addMentor")
+//    public ResponseEntity<TechnicalCourse> addMentorByMentorIdAndTechnicalCourseId(@RequestBody TechnicalCourseMentorDto  technicalCourseMentorDto) {
+//    	TechnicalCourse technicalCourse=technicalCourseServiceImpl.addMentorByMentorIdAndTechnicalCourseId(technicalCourseMentorDto.getMentorId(), technicalCourseMentorDto.getTechnicalCourseId());
+//    	return new ResponseEntity<>(technicalCourse,HttpStatus.OK);
+//    }
 
 }

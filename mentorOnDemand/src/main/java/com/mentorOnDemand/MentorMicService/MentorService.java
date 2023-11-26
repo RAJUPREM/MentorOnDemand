@@ -12,7 +12,7 @@ public interface MentorService {
 	
 	public Mentor getMentorById(int mentorId);
 	
-	public Mentor saveMentor(Mentor mentor);
+	public Mentor saveMentor(MentorDto mentorDto);
 	
 	public Mentor updateMentorByMentorId( Mentor mentor, int mentorId);
 	

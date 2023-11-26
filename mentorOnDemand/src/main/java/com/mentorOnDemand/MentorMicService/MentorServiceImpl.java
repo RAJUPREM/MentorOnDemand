@@ -33,8 +33,12 @@ public class MentorServiceImpl implements MentorService{
 	}
 
 	@Override
-	public Mentor saveMentor(Mentor mentor) {
-		mentor.setMentorPassword(new BCryptPasswordEncoder().encode(mentor.getMentorPassword()));
+	public Mentor saveMentor(MentorDto mentorDto) {
+		Mentor mentor=new Mentor();
+		mentor.setMentorName(mentorDto.getMentorName());
+		mentor.setMentorExperience(mentorDto.getMentorExperience());
+		mentor.setMentorPassword(new BCryptPasswordEncoder().encode(mentorDto.getMentorPassword()));
+		mentor.setTechnicalCourses(null);
 		mentorRepository.save(mentor);
 		return mentor;
 	}

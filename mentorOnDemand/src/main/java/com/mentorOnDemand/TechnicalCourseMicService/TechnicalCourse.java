@@ -2,6 +2,7 @@ package com.mentorOnDemand.TechnicalCourseMicService;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.mentorOnDemand.MentorMicService.Mentor;
 
 import jakarta.persistence.CascadeType;
@@ -30,7 +31,8 @@ public class TechnicalCourse {
 	private int technicalCourseId;
 	private String technicalCourseName;
 	
-	@ManyToMany(cascade=CascadeType.ALL)
+	@JsonBackReference
+	@ManyToMany(cascade=CascadeType.ALL,mappedBy="technicalCourses")
 	private List<Mentor> mentors;
 
 	public int getTechnicalCourseId() {

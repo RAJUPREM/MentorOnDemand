@@ -56,7 +56,7 @@ public class TrainingTracker {
 		this.trainingTotalDuration = trainingTotalDuration;
 	}
 
-	public boolean isTrainingCompletionStatus() {
+	public boolean getTrainingCompletionStatus() {
 		return trainingCompletionStatus;
 	}
 

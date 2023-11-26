@@ -8,13 +8,13 @@ public interface TechnicalCourseService {
 	
 	public TechnicalCourse getTechnicalCourseById(int technicalCourseId);
 	
-	public TechnicalCourse saveTechnicalCourse(TechnicalCourse technicalCourse);
+	public TechnicalCourse saveTechnicalCourse(TechnicalCourseDto technicalCourseDto);
 	
 	public TechnicalCourse updateTechnicalCourseByTechnicalCourseId( TechnicalCourse technicalCourse, int technicalCourseId);
 	
 	public TechnicalCourse deleteTechnicalCourseByTechnicalCourseId(int technicalCourseId);
 	
-	public TechnicalCourse addMentorByMentorIdAndTechnicalCourseId(int mentorId,int technicalCourseId);
+	//public TechnicalCourse addMentorByMentorIdAndTechnicalCourseId(int mentorId,int technicalCourseId);
 
 
 }

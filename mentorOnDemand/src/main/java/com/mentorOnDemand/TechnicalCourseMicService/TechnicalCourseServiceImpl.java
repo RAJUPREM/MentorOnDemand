@@ -33,7 +33,9 @@ public class TechnicalCourseServiceImpl implements TechnicalCourseService{
 	}
 
 	@Override
-	public TechnicalCourse saveTechnicalCourse(TechnicalCourse technicalCourse) {
+	public TechnicalCourse saveTechnicalCourse(TechnicalCourseDto technicalCourseDto) {
+		TechnicalCourse technicalCourse=new TechnicalCourse();
+		technicalCourse.setTechnicalCourseName(technicalCourseDto.getTechnicalCourseName());
 		technicalCourseRepository.save(technicalCourse);
 		return technicalCourse;
 	}
@@ -54,22 +56,22 @@ public class TechnicalCourseServiceImpl implements TechnicalCourseService{
 		return null;
 	}
 
-	@Override
-	public TechnicalCourse addMentorByMentorIdAndTechnicalCourseId(int mentorId,int technicalCourseId) {
-		Optional<Mentor> tempMentor=mentorRepository.findById(mentorId);
-		Mentor mentor=tempMentor.get();
-		
-		Optional<TechnicalCourse> tempTechnicalCourse=technicalCourseRepository.findById(technicalCourseId);
-		TechnicalCourse technicalCourse=tempTechnicalCourse.get();
-		
-		List<Mentor> lmentor=technicalCourse.getMentors();
-		lmentor.add(mentor);
-		
-		
-		technicalCourse.setMentors(lmentor);
-		technicalCourseRepository.save(technicalCourse);
-		
-		return technicalCourse;
-	}
+//	@Override
+//	public TechnicalCourse addMentorByMentorIdAndTechnicalCourseId(int mentorId,int technicalCourseId) {
+//		Optional<Mentor> tempMentor=mentorRepository.findById(mentorId);
+//		Mentor mentor=tempMentor.get();
+//		
+//		Optional<TechnicalCourse> tempTechnicalCourse=technicalCourseRepository.findById(technicalCourseId);
+//		TechnicalCourse technicalCourse=tempTechnicalCourse.get();
+//		
+//		List<Mentor> lmentor=technicalCourse.getMentors();
+//		lmentor.add(mentor);
+//		
+//		
+//		technicalCourse.setMentors(lmentor);
+//		technicalCourseRepository.save(technicalCourse);
+//		
+//		return technicalCourse;
+//	}
 
 }

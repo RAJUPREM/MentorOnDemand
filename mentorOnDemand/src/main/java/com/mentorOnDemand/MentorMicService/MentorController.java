@@ -1,5 +1,7 @@
 package com.mentorOnDemand.MentorMicService;
 
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +47,8 @@ public class MentorController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Mentor> saveMentor(@RequestBody Mentor Mentor){
-    	Mentor newMentor=mentorServiceImpl.saveMentor(Mentor);
+    public ResponseEntity<Mentor> saveMentor(@RequestBody MentorDto mentorDto){
+    	Mentor newMentor=mentorServiceImpl.saveMentor(mentorDto);
         return new ResponseEntity<>(newMentor, HttpStatus.OK);
     }
 
