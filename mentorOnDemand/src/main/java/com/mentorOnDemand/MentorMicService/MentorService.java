@@ -4,6 +4,8 @@ import java.util.List;
 
 
 
+
+
 public interface MentorService {
 	
 	public List<Mentor> getAllMentor();
@@ -15,5 +17,8 @@ public interface MentorService {
 	public Mentor updateMentorByMentorId( Mentor mentor, int mentorId);
 	
 	public Mentor deleteMentorByMentorId(int mentorId);
+	
+	public Mentor addTechnicalCourseByTechnicalCourseIdAndMentorId(int mentorId,int technicalCourseId);
+
 
 }
