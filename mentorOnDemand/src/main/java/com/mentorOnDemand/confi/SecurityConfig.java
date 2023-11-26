@@ -52,6 +52,8 @@ public class SecurityConfig {
                 .requestMatchers("/mentors/**").hasAnyAuthority("MENTOR","ADMIN")
                 .requestMatchers("/persons/**","/mentors/**","/users/**","/technicalCourses/**","/admins/**","/trainingTrackers/**")
                 .hasAuthority("ADMIN")
+                .requestMatchers("/userown/**")
+                .hasAuthority("USER")
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()

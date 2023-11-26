@@ -56,6 +56,28 @@ public class TechnicalCourseServiceImpl implements TechnicalCourseService{
 		return null;
 	}
 
+	@Override
+	public List<Mentor> getAllMentorsByTechnicalCourseName(String technicalCourseName) {
+		List<Mentor> lmentor=mentorRepository.findAll();
+		
+		List<Mentor> lmentorRes=new ArrayList<Mentor>();
+		
+		for(Mentor tempMentor:lmentor)
+		{
+			List<TechnicalCourse> ltechnicalcourse=tempMentor.getTechnicalCourses();
+			for(int i=0;i<ltechnicalcourse.size();i++)
+			{
+				TechnicalCourse tc=ltechnicalcourse.get(i);
+				if(tc.getTechnicalCourseName().equals(technicalCourseName))
+				{
+					lmentorRes.add(tempMentor);
+				}
+			}
+		}
+		
+		return lmentorRes;
+	}
+
 //	@Override
 //	public TechnicalCourse addMentorByMentorIdAndTechnicalCourseId(int mentorId,int technicalCourseId) {
 //		Optional<Mentor> tempMentor=mentorRepository.findById(mentorId);

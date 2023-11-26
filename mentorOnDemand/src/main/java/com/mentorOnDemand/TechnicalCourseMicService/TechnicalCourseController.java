@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mentorOnDemand.MentorMicService.Mentor;
+
 
 
 @RestController
@@ -58,6 +60,13 @@ public class TechnicalCourseController {
     public ResponseEntity<TechnicalCourse> deleteTechnicalCourseByTechnicalCourseId(@PathVariable int technicalCourseId){
     	TechnicalCourse newTechnicalCourse=technicalCourseServiceImpl.deleteTechnicalCourseByTechnicalCourseId(technicalCourseId);
         return new ResponseEntity<>(newTechnicalCourse, HttpStatus.OK);
+    }
+    
+    @GetMapping("/mentors")
+    public ResponseEntity<List<Mentor>> getAllMentorsByTechnicalCourseName(@RequestBody TechnicalCourseDto technicalCourseDto)
+    {
+    	List<Mentor> lmentor=technicalCourseServiceImpl.getAllMentorsByTechnicalCourseName(technicalCourseDto.getTechnicalCourseName());
+    	return new ResponseEntity<>(lmentor,HttpStatus.OK);
     }
     
 //    @PostMapping("/addMentor")
