@@ -24,7 +24,7 @@ import com.mentorOnDemand.servImpl.PersonServiceImpl;
 public class JWTController {
 
     @Autowired
-    JWTService jwtHelper;
+    JWTService jWTService;
     
     @Autowired
     PersonServiceImpl personServiceImpl;
@@ -57,10 +57,10 @@ public class JWTController {
         personServiceImpl.savePerson();
  		
         try {
-            Authentication authentication =      authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getPersonName()
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getPersonName()
                     , jwtRequest.getPassword()));
             if (authentication.isAuthenticated()) {
-                return ResponseEntity.ok(new JWTResponse(jwtHelper.generateToken(jwtRequest.getPersonName())));
+                return ResponseEntity.ok(new JWTResponse(jWTService.generateToken(jwtRequest.getPersonName())));
             } else {
                 throw new PersonNotFoundException("Person is not found sorry !!");
             }
